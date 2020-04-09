@@ -9,5 +9,7 @@ namespace DatinApp.API.Data
         {
         }
         public DbSet<Value> Value { get; set; }
+         public DbSet<User> Users { get; set; }
+
     }
 }
