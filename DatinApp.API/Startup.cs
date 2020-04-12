@@ -30,8 +30,16 @@ namespace DatinApp.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(x=>x.UseSqlite
-            (Configuration.GetConnectionString("DefaultConnection")));
+            var test = Configuration.GetConnectionString("DefaultConnection");
+
+
+            
+            services.AddDbContext<DataContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            //services.AddDbContext<DataContext>(x=>x.UseSQL
+            //(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddControllers();
             services.AddCors();
 

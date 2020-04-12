@@ -21,6 +21,6 @@ namespace DatinApp.API
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                     });
     }
 }
