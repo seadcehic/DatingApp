@@ -23,6 +23,7 @@ namespace DatinApp.API.Controllers
             this._context = context;
         }
         // GET: api/student
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetValues()
         {
