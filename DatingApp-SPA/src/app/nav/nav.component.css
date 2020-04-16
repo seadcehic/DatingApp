@@ -1,0 +1,6 @@
+.dropdown-toggle, .dropdown-item{
+    cursor: pointer;
+}
+.myLoginForm{
+    margin-left: auto!important;
+}

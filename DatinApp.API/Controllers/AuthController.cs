@@ -66,6 +66,7 @@ namespace DatinApp.API.Controllers
 
                 var key = new SymmetricSecurityKey(Encoding.UTF8
                 .GetBytes(_config.GetSection("AppSettings:Token").Value));
+               
 
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
@@ -78,7 +79,8 @@ namespace DatinApp.API.Controllers
 
                 var tokenHandler = new JwtSecurityTokenHandler();
 
-                var token = tokenHandler.CreateToken(tokenDescriptor);
+             var token = tokenHandler.CreateToken(tokenDescriptor);
+            
 
                 return Ok(new
                 {
