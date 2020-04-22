@@ -5,9 +5,11 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using DatinApp.API.Data;
+using DatinApp.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace DatinApp.API.Controllers
 {
@@ -22,12 +24,28 @@ namespace DatinApp.API.Controllers
         {
             this._context = context;
         }
+       
         // GET: api/student
         [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetValues()
         {
-           var values =await  _context.Value.ToListAsync();
+            //var userData = System.IO.File.ReadAllText("Data/UserSeedData.json");
+            //// var users = JsonConvert.DeserializeObject<List<User>>(userData);
+
+            //List<User> UserList = JsonConvert.DeserializeObject<List<User>>(userData);
+            //foreach (var user in UserList)
+            //{
+            //    byte[] passwordHash, passwordSalt;
+            //    CreatePasswordHash("password", out passwordHash, out passwordSalt);
+
+            //    user.PasswordHash = passwordHash;
+            //    user.PasswordSalt = passwordSalt;
+            //    user.Username = user.Username.ToLower();
+            //    _context.Users.Add(user);
+            //}
+            //_context.SaveChanges();
+            var values =await  _context.Values.ToListAsync();
            return Ok(values);   
         }
 
@@ -35,7 +53,7 @@ namespace DatinApp.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id)
         {
-           var value = await _context.Value.FirstOrDefaultAsync(x=>x.Id==id);
+           var value = await _context.Values.FirstOrDefaultAsync(x=>x.Id==id);
           return Ok(value);
         }
 
