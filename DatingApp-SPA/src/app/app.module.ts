@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { UserService} from './_services/user.service';
+
 
 import { AppComponent } from './app.component';
 import { ValueComponent } from './value/value.component';
@@ -36,7 +38,8 @@ import { MembersListComponent } from './members-list/members-list.component';
    ],
    providers: [
       AuthService,
-      ErrorInterceptorProvider
+      ErrorInterceptorProvider,
+      UserService
    ],
    bootstrap: [
       AppComponent
