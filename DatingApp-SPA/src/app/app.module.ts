@@ -21,7 +21,7 @@ import { MembersListComponent } from './members/members-list/members-list.compon
 import {MemberCardComponent} from './members/member-card/member-card.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
-
+import {TabsModule} from 'ngx-bootstrap';
 
 export function tokenGetter(){
    return localStorage.getItem('token');
@@ -45,6 +45,7 @@ export function tokenGetter(){
       BrowserModule,
       HttpClientModule,
       FormsModule,
+      TabsModule.forRoot(),
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       JwtModule.forRoot({
