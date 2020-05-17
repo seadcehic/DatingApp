@@ -38,4 +38,8 @@ user: User;
     });
    
   }
+
+  updateMainPhoto(photoUrl){
+    this.user.photoUrl = photoUrl;
+  }
 }
