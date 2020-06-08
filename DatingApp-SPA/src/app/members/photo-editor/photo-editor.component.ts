@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/_services/auth.service';
 import { UserService } from 'src/app/_services/user.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { error } from 'protractor';
 
 @Component({
   selector: 'app-photo-editor',
@@ -69,6 +70,17 @@ this.userService.setMainPhoto(this.authService.decodedToken.nameid[0], photo.id)
 }, error => {
  this.alertify.error(error);
 });
+}
+
+deletePhoto(id: number){
+  this.alertify.confirm('Are you sure you want to delete this photo?', () => {
+this.userService.deletePhoto(this.authService.decodedToken.nameid[0], id).subscribe(()=>{
+  this.photos.splice(this.photos.findIndex(p => p.id ===  id), 1);
+  this.alertify.success('Photo has been deleted');
+}, error=> {
+  this.alertify.error('Failed to delete the photo');
+})
+})
 }
   
 }
