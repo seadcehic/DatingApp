@@ -1,4 +1,5 @@
-﻿using DatinApp.API.Models;
+﻿using DatinApp.API.Helpers;
+using DatinApp.API.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -45,11 +46,15 @@ namespace DatinApp.API.Data
             return user;
         }
         
-        public async Task<IEnumerable<User>> GetUsers()
+        public async Task<PagedList<User>> GetUsers(UserParams userParams)
         {
-            var users = await _context.Users.Include(p => p.Photos).ToListAsync();
+            var users =   _context.Users.Include(p => p.Photos).AsQueryable();
 
-            return users;
+            users = users.Where(u => u.Id != userParams.UserId);
+            users = users.Where(u => u.Gender == userParams.Gender);
+
+
+            return await PagedList<User>.CreateAsync(users, userParams.PageNumber,userParams.PageSize);
         }
 
         public async Task<bool> SaveAll()
